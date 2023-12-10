@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" >
+    <script defer src="/static/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid p-1 bg-primary text-white text-center">
+        <div class="row">
+            <div class="col-2 text-start">
+                <img src="{% static 'images/pp100.jpg' %}" width="70"
+                                                          height="70">
+            </div>
+            <div class="col-10 ">
+                <h3>Магия камня - украшения из натуральных камней ручной работы</h3>
+                <div class="row bg-primary text-white mx-2">
+            <div class="col text-center">
+                <p>Добро пожаловать на сайт <em>Магия камня</em>. Это очень
+                   Простой веб-сайт, написанный на Django и Bootstrap.
+                   Разработан на Python в качестве учебного примера с
+                   использованием PyCharm.</p>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row bg-warning text-center">
+            <h6>
+                <a href="{% url 'index' %}">Главная страница</a>
+                <a href="{% url 'about' %}">О магазине</a>
+                <a href="{% url 'contact' %}">Контакты</a>
+            </h6>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row text-center text-primary fs-1 fw-bold">
+            <div>{% block header%}
+                 {% endblock header %}
+            </div>
+        </div>
+        <div class="row text-start text-body">
+             <div class="col-2 ">
+                 {% block sidebar %}
+                 <nav class="nav flex-column">
+                    <a class="nav-link" href="{% url 'jewelry-list' %}">Все украшения</a>
+                    <a class="nav-link" href="{% url 'stone-list' %}">Все самоцветы</a>
+                    </nav>
+                 {% endblock sidebar %}
+            </div>
+            <div class="col-10" >
+                <div class="row text-center">
+                 {% block content%}
+                 {% endblock content %}
+                  <!-- пагинатор -->
+                 <div class="pagination">
+                    <span class="step-links">
+                    {% if page_obj.paginator.num_pages > 1 %}
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1"> &laquo;Первая&raquo;</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">
+                                &laquo;Предыдущая&raquo;</a>
+                        {% endif %}
+                        <span class="current">
+                            Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">&laquo;Следующая&raquo;</a>
+                        {% endif %}
+                {% endif %}
+                    </span>
+                 </div>
+                 <!-- пагинатор -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row bg-info text-center text-dark small lh-sm pt-2 my-2">
+            {% block footer %}
+                <p>ООО "Магия камней" Все права защищены</p>
+            {% endblock footer%}
+        </div>
+    </div>
+</body>
+</html>

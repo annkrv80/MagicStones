@@ -1,0 +1,40 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+    <div class="row text-center text-dark lh-2">
+            <h4>Список украшений</h4>
+    </div>
+
+    {% if jewelry %}
+    <table class="table table-striped table-bordered text-start">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Камни</th>
+                    <th>Форма</th>
+                    <th>Цена</th>
+                    <th>Фото</th>
+                    <th>Показать</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jewelry in jewelry %}
+                    <tr>
+                        <td><a href="{{ jewelry.id }}">{{ jewelry.name }} </a></td>
+                        <td>{{ jewelry.display_stone }}</td>
+                        <td>{{ jewelry.forma }}</td>
+                        <td>{{ jewelry.price }} руб.</td>
+                        <td><img src="{{ jewelry.photo.url }}" alt="connect"
+                                 style="max-height:100px"></td>
+                        <td><a href="{{ jewelry.photo.url}}"
+                               class="btn btn-primary"
+                               target="_blank"> Показать</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+      <p>Список украшений пуст</p>
+    {% endif %}
+{% endblock %}

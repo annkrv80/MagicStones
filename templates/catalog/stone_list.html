@@ -1,0 +1,30 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+    <h4>Список самоцветов</h4>
+   {% if stone_list %}
+        <table class="table table-striped table-bordered text-start">
+            <thead>
+                <tr>
+                    <th>Камень</th>
+                    <th>Фото</th>
+                    <th>Показать фото</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for stone in stone_list.all %}
+            <tr>
+                <td><a href="{{ stone.id }}">{{ stone.name }}</a></td>
+                <td><img src="{{ stone.photo.url }}" alt="connect"
+                        style="max-height:100px"></td>
+                <td><a href="{{ stone.photo.url}}"
+                    class="btn btn-primary"
+                    target="_blank"> Показать</a></td>
+            </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+   {% else %}
+      <p>Список самоцветов пуст</p>
+    {% endif %}
+{% endblock %}

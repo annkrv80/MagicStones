@@ -1,0 +1,22 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+  <div class="container text-start">
+    <div class="row my-2">
+        <h4>{{ stone.name }} </h4>
+        <p>Страна происхождения: {{ stone.country }}</p>
+        <p>Фото </p>
+        <p><img src="{{ stone.photo.url }}"
+                alt="connect" style="max-height:200px"></p>
+        <div class="row my-2">
+          <div class="col-2 my-2">
+             <a href="{{ stone.photo.url}}" class="btn btn-primary"
+                target="_blank"> Показать</a>
+          </div>
+        </div>
+      <div class="row my-2">
+             {{stone.description }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

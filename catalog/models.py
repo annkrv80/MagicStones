@@ -12,6 +12,8 @@ class Forma(models.Model):
         return self.name
 
 
+
+
 class Size(models.Model):
     name = models.IntegerField(null=True,
                                validators=[MaxValueValidator(200), MinValueValidator(10)],
