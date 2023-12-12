@@ -9,5 +9,6 @@ urlpatterns = [
     path('stone/', views.StoneListView.as_view(), name='stone-list'),
     path('stone/<int:pk>', views.StoneDetailView.as_view(), name='stone-detail'),
     path('about/', views.about, name='about'),
-    path('contact/', views.contact, name='contact')
+    path('contact/', views.contact, name='contact'),
+    path('myorders/', views.LoanerJewelryByUserListView.as_view(), name='my-orders')
 ]

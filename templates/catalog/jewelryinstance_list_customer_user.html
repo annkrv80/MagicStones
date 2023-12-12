@@ -1,0 +1,18 @@
+<{% extends "catalog/base.html" %}
+
+{% block content %}
+    <h1>Заказанные украшения</h1>
+    {% if jewelryinstance_list %}
+
+      {% for jewelryinst in jewelryinstance_list %}
+      <div>
+        <a href="{% url 'jewelry-detail' jewelryinst.jewelry.pk %}">
+            {{ jewelryinst.jewelry.name }}</a>
+            {{ jewelryinst.due_back }}
+      </div>
+      {% endfor %}
+
+    {% else %}
+      <p>Список заказов пуст</p>
+    {% endif %}
+{% endblock %}

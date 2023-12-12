@@ -69,12 +69,27 @@
         <div class="col mx-2 my-2 bg-primary text-center">{{rab3}}</div>
     </div>
   </div>
+    <div class="row text-center text-dark lh-2">
+            <h3>Украшения</h3>
+        </div>
+         {% if num_jewelry > 0 %}
+            <div class="row my-2">
+                {% for obj in jewelry %}
+                    <div class="card" style="width: 9rem;">
+                        <img src="{{ obj.photo.url }}" class="card-img-top">
+                        <div class="card-body">
+                            <p class="card-text small">
+                                {{obj.name}}, Цена:{{obj.price}} руб.
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <div class="row text_center text-darl lh-2">
+        <h6>Число посещений данной страницы - {{ num_visits }}</h6>
+    </div>
 
-<div class="row my-2 text-center"></div>
-
- </div>
- <!-- пустые колонки справа от аккордеона-->
- <div class="col-3"></div>
 
 </div>
 {% endblock %}

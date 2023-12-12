@@ -1,6 +1,8 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from datetime import date
 
 
 class Forma(models.Model):
@@ -10,8 +12,6 @@ class Forma(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 
 class Size(models.Model):
@@ -64,7 +64,7 @@ class Jewelry(models.Model):
     name = models.CharField(max_length=200,
                             help_text="Введите название украшения",
                             verbose_name="Название украшения")
-    size = models.ManyToManyField('Size', null=True,blank=True,
+    size = models.ManyToManyField('Size', null=True, blank=True,
                                   help_text="Выберите размер(размеры)",
                                   verbose_name="Размер(размеры) украшения")
     forma = models.ForeignKey('Forma', on_delete=models.CASCADE,
@@ -109,9 +109,14 @@ class JewelryInstance(models.Model):
     due_back = models.DateField(null=True, blank=True,
                                 help_text="Введите конец срока статуса",
                                 verbose_name="Дата окончания срока статуса")
+    customer = models.ForeignKey(User, on_delete=models.SET_NULL,
+                                 null=True, blank=True, verbose_name="Заказчик",
+                                 help_text="Выберите заказчика")
 
     class Meta:
         ordering = ["due_back"]
 
     def __str__(self):
         return '%s  %s  %s' % (self.inv_num, self.jewelry, self.status)
+
+

@@ -1,0 +1,16 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+<div class="row text-start text-primary text-primary fs-6 fw-bold">
+    <div class="col-4">
+        <form method="post">
+            {% csrf_token %}
+                {{ form }}
+             <button type="submit">Регистрация</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

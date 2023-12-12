@@ -26,12 +26,13 @@ class JewelryAdmin(admin.ModelAdmin):
 # admin.site.register(JewelryInstance)
 @admin.register(JewelryInstance)
 class JewelryInstanceAdmin(admin.ModelAdmin):
+    list_display = ('jewelry', 'status', 'customer', 'due_back', 'id')
     list_filter = ('jewelry', 'status')
     fieldsets = (
         ('Экземпляр украшения', {
             'fields': ('jewelry', 'inv_num')}),
         ('Статус и окончание его действия',{
-            'fields': ('status', 'due_back')
+            'fields': ('status', 'due_back', 'customer')
         })
     )
 
