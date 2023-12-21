@@ -3,14 +3,37 @@
 {% block content %}
 <h1>{{title}}</h1>
 
-<div class="row text-start text-primary text-primary fs-6 fw-bold">
+<form method="post">
+  {% csrf_token %}
+<div class="row my-2 text-center">
     <div class="col-4">
-        <form method="post">
-            {% csrf_token %}
-                {{ form }}
-             <button type="submit">Регистрация</button>
-        </form>
+      <table class="table table-bordered my-2 text-start">
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}
+          <div class="text-danger">{{ form.username.errors }}</div></td>
+        </tr>
+        <tr>
+          <td>{{ form.email.label_tag }}</td>
+          <td>{{ form.email }}
+          <div class="text-danger">{{ form.email.errors }}</div></td>
+        </tr>
+        <tr>
+          <td>{{ form.password1.label_tag }}</td>
+          <td>{{ form.password1 }}
+          <div class="text-danger">{{ form.password1.errors }}</div></td>
+        </tr>
+        <tr>
+          <td>{{ form.password2.label_tag }}</td>
+          <td>{{ form.password2 }}
+          <div class="text-danger">{{ form.password2.errors }}</div></td>
+        </tr>
+      </table>
     </div>
-</div>
+    <div class="col-8"></div>
+  </div>
 
+  <div class="row my-2 text-start">
+    <div class="col-4">
+      <button type="submit">Регистрация</button>
 {% endblock %}
